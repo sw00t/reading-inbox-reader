@@ -54,7 +54,7 @@
   }
 
   // ---------- GitHub access + offline cache ----------
-  const CONN_DEFAULTS = { owner: 'sw00t', repo: 'reading-inbox', branch: 'main', token: '' };
+  const CONN_DEFAULTS = { owner: '', repo: '', branch: 'main', token: '' };
   const conn = () => ({ ...CONN_DEFAULTS, ...store.get('conn', {}) });
   const CACHE = 'articles-v1';
   const cacheKey = path => { const c = conn(); return `https://cache.invalid/${c.owner}/${c.repo}/${c.branch}/${path}`; };
@@ -127,7 +127,7 @@
     const save = el('button', { class: 'btn primary', text: 'Save and open' });
     save.onclick = () => {
       const v = id => $(id).value.trim();
-      if (!v('#c-token')) { status('Enter a token first.'); return; }
+      if (!v('#c-owner') || !v('#c-repo') || !v('#c-token')) { status('Enter the owner, repository and token first.'); return; }
       store.set('conn', { owner: v('#c-owner'), repo: v('#c-repo'), branch: v('#c-branch') || 'main', token: v('#c-token') });
       location.hash = '#/'; route();
     };
