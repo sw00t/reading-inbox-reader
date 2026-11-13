@@ -70,7 +70,7 @@
     const res = await fetch(url, { headers: {
       Accept: 'application/vnd.github.raw+json', Authorization: 'Bearer ' + c.token, 'X-GitHub-Api-Version': '2022-11-28' } });
     if (res.status === 401 || res.status === 403) throw new AuthError('GitHub refused the token (HTTP ' + res.status + ').');
-    if (res.status === 404) throw new Error('Not found: ' + path + '. Check the repository name, branch and token access.');
+    if (res.status === 404) throw new Error('Not found: ' + path + ' in ' + c.owner + '/' + c.repo + ' (' + c.branch + '). GitHub answers this way when the token cannot see the repository: check that the token lists this repository under Only select repositories and has Contents: Read-only, then re-enter it under the gear icon.');
     if (!res.ok) throw new Error('GitHub error ' + res.status + ' for ' + path);
     const blob = await res.blob();
     if (hasCache) { try { await (await caches.open(CACHE)).put(cacheKey(path), new Response(blob)); } catch { /* quota */ } }
