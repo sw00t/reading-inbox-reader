@@ -1,5 +1,5 @@
 // Caches the reader app itself so it opens offline. Article data is cached by app.js.
-const SHELL = 'shell-v2';
+const SHELL = 'shell-v3';
 const FILES = ['./', 'index.html', 'style.css', 'app.js', 'vendor/marked.umd.js', 'vendor/purify.min.js',
   'manifest.webmanifest', 'icon-192.png', 'icon-512.png'];
 self.addEventListener('install', e => e.waitUntil(caches.open(SHELL).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));

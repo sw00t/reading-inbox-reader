@@ -203,6 +203,12 @@
     const h1 = art.querySelector('h1'); if (h1) h1.after(src); else art.prepend(src);
 
     art.querySelectorAll('table').forEach(t => { const w = el('div', { class: 'table-wrap' }); t.replaceWith(w); w.append(t); });
+    art.querySelectorAll('thead tr').forEach(tr => {   // titled box: let the title span the whole table
+      const ths = [...tr.children];
+      if (ths.length > 1 && ths[0].textContent.trim() && ths.slice(1).every(th => !th.textContent.trim())) {
+        ths[0].colSpan = ths.length; ths.slice(1).forEach(th => th.remove());
+      }
+    });
     const isLocal = u => !!u && !/^[a-z][a-z0-9+.-]*:|^\/\/|^#/i.test(u);
     const blobUrl = async rel => {
       const blob = await load(base + decodeURIComponent(rel), 'stored');

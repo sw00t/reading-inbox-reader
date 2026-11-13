@@ -50,7 +50,11 @@ article :is(h1,h2,h3,h4){scroll-margin-top:70px}
 article a{color:var(--accent)}
 article img{max-width:100%;height:auto;display:block;margin:1em auto;border-radius:4px;cursor:zoom-in;background:var(--soft)}
 article img.pending{min-height:120px;width:100%}
-article blockquote{margin:1em 0;padding:.2em 1em;border-left:3px solid var(--line);color:var(--muted)}
+article blockquote{margin:1.4em 0;padding:.6em 1.1em;border-left:4px solid var(--accent);background:var(--soft);border-radius:0 8px 8px 0}
+article blockquote>:first-child{margin-top:.3em}article blockquote>:last-child{margin-bottom:.3em}
+article blockquote :is(h2,h3,h4){border:0;padding:0;margin:.4em 0}
+article blockquote pre{background:var(--bg)}
+article h2+p>em:only-child{color:var(--muted)}
 article pre{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;
   font:.82em/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 :root[data-wrap] article pre{white-space:pre-wrap;overflow-wrap:anywhere}
@@ -60,6 +64,8 @@ article pre code{background:none;padding:0;font-size:1em}
 article table{border-collapse:collapse;font-size:.9em;min-width:100%}
 article th,article td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
 article th{background:var(--soft)}
+article td:first-child>strong:only-child{white-space:nowrap}
+@media (max-width:600px){article td:first-child>strong:only-child{white-space:normal}article th,article td{padding:6px 8px}}
 article hr{border:0;border-top:1px solid var(--line);margin:2em 0}
 .src{color:var(--muted);font:.85rem/1.5 system-ui,sans-serif;margin-bottom:1.5em}
 .src a{color:var(--muted)}
